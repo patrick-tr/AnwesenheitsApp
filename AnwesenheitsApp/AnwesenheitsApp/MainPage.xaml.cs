@@ -110,6 +110,11 @@ namespace AnwesenheitsApp
             Navigation.PushAsync(new LogPage());
         }
 
+        public void SettingsButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingsPage());
+        }
+
         private void ReloadPage()
         {
             GetCurrentLocation();
