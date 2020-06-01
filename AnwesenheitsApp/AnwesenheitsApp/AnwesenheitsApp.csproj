@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logging\Log\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="LogPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

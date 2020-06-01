@@ -8,12 +8,13 @@ namespace AnwesenheitsApp.Logging
 {
     class Logging
     {
-        private string _filePath = @"Log/error_log.txt";
+        private string _filePath = @"error_log.txt";
         private string _logText;
 
         public Logging()
         {
-
+            this._filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                this._filePath);
         }
 
         public void WriteLogEntry(string logEntryMessage)
@@ -39,7 +40,8 @@ namespace AnwesenheitsApp.Logging
 
         private void WriteEntry(string logEntryMessage)
         {
-            logEntryMessage = "\n" + DateTime.Now.ToString("dd-MM-YYYY H:mm:ss") + logEntryMessage;
+            ReadLog();
+            logEntryMessage = "\n" + DateTime.Now.ToString("dd-MM-yyyy H:mm:ss\t") + logEntryMessage;
             this._logText += logEntryMessage;
 
             File.WriteAllText(this._filePath, this._logText);
@@ -55,7 +57,12 @@ namespace AnwesenheitsApp.Logging
 
         private void CreateLog()
         {
+            File.WriteAllText(this._filePath, "");
+        }
 
+        private void ClearLog()
+        {
+            File.WriteAllText(this._filePath, "");
         }
 
         private bool CheckIfLogExists()

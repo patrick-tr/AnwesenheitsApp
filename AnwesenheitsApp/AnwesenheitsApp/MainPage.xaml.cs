@@ -82,6 +82,10 @@ namespace AnwesenheitsApp
 
             InitializeComponent();
 
+            var log = new Logging.Logging();
+
+            log.WriteLogEntry("[TEST] App gestartet!");
+
             this.BindingContext = this;
         }
 

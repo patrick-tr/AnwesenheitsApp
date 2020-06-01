@@ -7,7 +7,10 @@
              x:Class="AnwesenheitsApp.LogPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!" />
+            <Label Text="Log" HorizontalOptions="Center" FontSize="Large"
+                   TextColor="Black" FontAttributes="Bold"/>
+            <Label Text="{Binding LogText}" HorizontalOptions="CenterAndExpand" Margin="20"
+                   LineBreakMode="WordWrap"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
