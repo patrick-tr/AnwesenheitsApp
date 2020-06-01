@@ -40,7 +40,7 @@
 
         <StackLayout Orientation="Horizontal" BackgroundColor="Gray" Grid.Row="1">
             <Button Text="Einstellungen" Clicked="SettingsButtonClicked"></Button>
-            <Button Text="Buchungen"></Button>
+            <Button Text="Buchungen" Clicked="BookingButtonClicked"></Button>
             <Button Text="Export"></Button>
             <Button Text="Log" Clicked="LogButtonClicked"></Button>
         </StackLayout>

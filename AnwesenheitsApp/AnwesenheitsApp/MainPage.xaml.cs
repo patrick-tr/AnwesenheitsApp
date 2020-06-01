@@ -115,6 +115,11 @@ namespace AnwesenheitsApp
             Navigation.PushAsync(new SettingsPage());
         }
 
+        public void BookingButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new BookingsPage());
+        }
+
         private void ReloadPage()
         {
             GetCurrentLocation();
