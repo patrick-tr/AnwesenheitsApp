@@ -20,7 +20,7 @@
                            TextColor="Black" FontSize="Medium"/>
                     <Editor Placeholder="Datei Name" Grid.Row="1" />
                     <Button Text="Speichern" Grid.Row="2" BackgroundColor="CadetBlue" 
-                            CornerRadius="5" FontAttributes="Bold"/>
+                            CornerRadius="5" FontAttributes="Bold" Clicked="SaveLogBtnClicked"/>
                 </Grid>
             </Frame>
             <Frame BorderColor="DarkGray" Margin="10">
@@ -44,11 +44,11 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <CheckBox/>
+                        <CheckBox IsChecked="{Binding isCSV, Mode=TwoWay}"/>
                         <Label Text="als CSV Datei" Grid.Column="1" TextColor="Black"
                                VerticalTextAlignment="Center"/>
 
-                        <CheckBox Grid.Row="1" Color="Green"/>
+                        <CheckBox Grid.Row="1" Color="Green" IsChecked="{Binding isEXCEL, Mode=TwoWay}"/>
                         <Label Text="als EXCEL Arbeitsmappe" Grid.Row="1" Grid.Column="1"
                                VerticalTextAlignment="Center" TextColor="Black"/>
 
