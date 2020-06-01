@@ -6,6 +6,11 @@ using System.Text;
 
 namespace AnwesenheitsApp.Logging
 {
+    public enum LoggingType
+    {
+        INFO, ERROR, WARNING, DEBUG, FATAL
+    }
+
     class Logging
     {
         private string _filePath = @"error_log.txt";
@@ -17,14 +22,14 @@ namespace AnwesenheitsApp.Logging
                 this._filePath);
         }
 
-        public void WriteLogEntry(string logEntryMessage)
+        public void WriteLogEntry(LoggingType type, string logEntryMessage)
         {
             if(!CheckIfLogExists())
             {
                 CreateLog();
             }
 
-            WriteEntry(logEntryMessage);
+            WriteEntry(type, logEntryMessage);
         }
 
         public string GetLogText()
@@ -38,10 +43,11 @@ namespace AnwesenheitsApp.Logging
             return "No Log available!";
         }
 
-        private void WriteEntry(string logEntryMessage)
+        private void WriteEntry(LoggingType type, string logEntryMessage)
         {
             ReadLog();
-            logEntryMessage = "\n" + DateTime.Now.ToString("dd-MM-yyyy H:mm:ss\t") + logEntryMessage;
+            logEntryMessage = "\n" + DateTime.Now.ToString("dd-MM-yyyy H:mm:ss\t[") +
+                type.ToString() + "] " + logEntryMessage;
             this._logText += logEntryMessage;
 
             File.WriteAllText(this._filePath, this._logText);
@@ -60,7 +66,7 @@ namespace AnwesenheitsApp.Logging
             File.WriteAllText(this._filePath, "");
         }
 
-        private void ClearLog()
+        public void ClearLog()
         {
             File.WriteAllText(this._filePath, "");
         }

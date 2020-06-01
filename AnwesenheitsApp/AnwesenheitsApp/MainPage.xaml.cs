@@ -23,6 +23,7 @@ namespace AnwesenheitsApp
         private string _CurrentDate;
         private string _ServiceControllBtnText;
         private bool _ServiceCtrlBtnState;
+        private Logging.Logging _logger;
 
         public string ServiceControllBtnText
         {
@@ -82,9 +83,10 @@ namespace AnwesenheitsApp
 
             InitializeComponent();
 
-            var log = new Logging.Logging();
+            if (this._logger == null)
+                this._logger = new Logging.Logging();
 
-            log.WriteLogEntry("[TEST] App gestartet!");
+            this._logger.WriteLogEntry(Logging.LoggingType.INFO, "App gestartet!");
 
             this.BindingContext = this;
         }
@@ -135,7 +137,7 @@ namespace AnwesenheitsApp
             }
             catch (Exception ex)
             {
-
+                
             }
         }
 

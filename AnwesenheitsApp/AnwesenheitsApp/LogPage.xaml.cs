@@ -13,6 +13,7 @@ namespace AnwesenheitsApp
     public partial class LogPage : ContentPage
     {
         private string _logText;
+        private Logging.Logging _logger; 
 
         public string LogText
         {
@@ -32,11 +33,23 @@ namespace AnwesenheitsApp
         {
             InitializeComponent();
 
-            var logger = new Logging.Logging();
+            this._logger = new Logging.Logging();  
 
-            this.LogText = logger.GetLogText();
+            this.LogText = this._logger.GetLogText();
 
             this.BindingContext = this;
+        }
+
+        public async void ClearLogBtn_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Warnung!", "Möchtest du das Log wirklich Löschen?",
+                "Ja", "Nein");
+
+            if (answer)
+            {
+                this._logger.ClearLog();
+                this.LogText = this._logger.GetLogText();
+            }
         }
     }
 }
