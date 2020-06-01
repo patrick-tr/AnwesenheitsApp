@@ -14,8 +14,11 @@
             <StackLayout>
                 <Label Text="Log" HorizontalOptions="Center" FontSize="Large"
                    TextColor="Black" FontAttributes="Bold"/>
-                <Label Text="{Binding LogText}" HorizontalOptions="CenterAndExpand" Margin="20"
-                   LineBreakMode="WordWrap" TextColor="Black"/>
+                <ScrollView>
+                    <Label Text="{Binding LogText}" HorizontalOptions="CenterAndExpand" Margin="20"
+                        LineBreakMode="WordWrap" TextColor="Black"/>
+                </ScrollView>
+                    
             </StackLayout>
             <Button Text="Log löschen" Grid.Row="1" Clicked="ClearLogBtn_Clicked"/>
         </Grid>
