@@ -42,7 +42,7 @@
             <Button Text="Einstellungen"></Button>
             <Button Text="Buchungen"></Button>
             <Button Text="Export"></Button>
-            <Button Text="Wetter"></Button>
+            <Button Text="Log" Clicked="LogButtonClicked"></Button>
         </StackLayout>
 
     </Grid>

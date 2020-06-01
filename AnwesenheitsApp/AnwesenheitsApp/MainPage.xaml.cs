@@ -99,6 +99,11 @@ namespace AnwesenheitsApp
             btn.BackgroundColor = this._ServiceCtrlBtnState == true ? Color.Red : Color.Green;
         }
 
+        public void LogButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new LogPage());
+        }
+
         private void ReloadPage()
         {
             GetCurrentLocation();

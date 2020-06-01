@@ -26,6 +26,17 @@ namespace AnwesenheitsApp.Logging
             WriteEntry(logEntryMessage);
         }
 
+        public string GetLogText()
+        {
+            if(CheckIfLogExists())
+            {
+                ReadLog();
+                return this._logText;
+            }
+
+            return "No Log available!";
+        }
+
         private void WriteEntry(string logEntryMessage)
         {
             logEntryMessage = "\n" + DateTime.Now.ToString("dd-MM-YYYY H:mm:ss") + logEntryMessage;
