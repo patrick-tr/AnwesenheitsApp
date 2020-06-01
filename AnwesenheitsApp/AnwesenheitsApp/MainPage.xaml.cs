@@ -103,6 +103,10 @@ namespace AnwesenheitsApp
             this._ServiceCtrlBtnState = !this._ServiceCtrlBtnState;
             this.ServiceControllBtnText = this._ServiceCtrlBtnState == true ? "Stop" : "Start";
             btn.BackgroundColor = this._ServiceCtrlBtnState == true ? Color.Red : Color.Green;
+
+            this._logger.WriteLogEntry(Logging.LoggingType.INFO,
+                this._ServiceCtrlBtnState == true ? "Try to start Check position service..." :
+                "Try to stop Check position service...");
         }
 
         public void LogButtonClicked(object sender, EventArgs e)

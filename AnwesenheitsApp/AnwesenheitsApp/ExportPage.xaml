@@ -7,9 +7,56 @@
              x:Class="AnwesenheitsApp.ExportPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Export" TextColor="Black" FontSize="Large" 
+                FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
+            <Frame BorderColor="DarkGray" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Log exportieren..." HorizontalOptions="Center" TextDecorations="Underline"
+                           TextColor="Black" FontSize="Medium"/>
+                    <Editor Placeholder="Datei Name" Grid.Row="1" />
+                    <Button Text="Speichern" Grid.Row="2" BackgroundColor="CadetBlue" 
+                            CornerRadius="5" FontAttributes="Bold"/>
+                </Grid>
+            </Frame>
+            <Frame BorderColor="DarkGray" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Buchungen exportieren..." TextColor="Black" FontSize="Medium"
+                           TextDecorations="Underline" HorizontalOptions="Center"/>
+                    <Editor Placeholder="Datei Name" Grid.Row="1"/>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox/>
+                        <Label Text="als CSV Datei" Grid.Column="1" TextColor="Black"
+                               VerticalTextAlignment="Center"/>
+
+                        <CheckBox Grid.Row="1" Color="Green"/>
+                        <Label Text="als EXCEL Arbeitsmappe" Grid.Row="1" Grid.Column="1"
+                               VerticalTextAlignment="Center" TextColor="Black"/>
+
+                    </Grid>
+                    <Button Text="Exportieren" Grid.Row="3" BackgroundColor="CadetBlue"
+                            CornerRadius="5" TextColor="Black" FontAttributes="Bold"/>
+                </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

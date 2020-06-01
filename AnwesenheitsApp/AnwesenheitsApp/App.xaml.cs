@@ -9,7 +9,6 @@ namespace AnwesenheitsApp
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new MainPage());
         }
 
