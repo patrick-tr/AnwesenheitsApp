@@ -137,7 +137,8 @@ namespace AnwesenheitsApp
             }
             catch (Exception ex)
             {
-                
+                string msg = ex.Message + "\n\tGetCurrentDate() in class MainPage";
+                this._logger.WriteLogEntry(Logging.LoggingType.ERROR, msg);
             }
         }
 
@@ -157,7 +158,8 @@ namespace AnwesenheitsApp
             }
             catch (Exception ex)
             {
-
+                string msg = ex.Message + "\n\tGetCurrentLocation() in class MainPage";
+                this._logger.WriteLogEntry(Logging.LoggingType.ERROR, msg);
             }
         }
 
@@ -176,7 +178,8 @@ namespace AnwesenheitsApp
             }
             catch (Exception ex)
             {
-
+                string msg = ex.Message + "\n\tGetPlaceFromCoord() in class MainPage";
+                this._logger.WriteLogEntry(Logging.LoggingType.ERROR, msg);
             }
         }
     }
