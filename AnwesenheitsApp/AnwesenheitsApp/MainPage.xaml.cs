@@ -120,6 +120,11 @@ namespace AnwesenheitsApp
             Navigation.PushAsync(new BookingsPage());
         }
 
+        public void ExportButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ExportPage());
+        }
+
         private void ReloadPage()
         {
             GetCurrentLocation();
