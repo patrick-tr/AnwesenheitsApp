@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using Android.Content;
+using Android.Support.V4.Content;
+using Android;
+using Android.Support.V4.App;
 
 namespace AnwesenheitsApp.Droid
 {
@@ -21,6 +24,8 @@ namespace AnwesenheitsApp.Droid
 
             base.OnCreate(savedInstanceState);
 
+            CheckPermission();
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
@@ -30,6 +35,19 @@ namespace AnwesenheitsApp.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void CheckPermission()
+        {
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) != (int)Permission.Granted)
+            {
+                ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.WriteExternalStorage }, 0);
+            }
+
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != (int)Permission.Granted)
+            {
+                ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadExternalStorage }, 0);
+            }
         }
     }
 }

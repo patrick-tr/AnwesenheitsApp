@@ -3,60 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
              mc:Ignorable="d"
              x:Class="AnwesenheitsApp.ExportPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Export" TextColor="Black" FontSize="Large" 
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Export" TextColor="Black" FontSize="Large" 
                 FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
-            <Frame BorderColor="DarkGray" Margin="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Label Text="Log exportieren..." HorizontalOptions="Center" TextDecorations="Underline"
-                           TextColor="Black" FontSize="Medium"/>
-                    <Editor Placeholder="Datei Name" Grid.Row="1" />
-                    <Button Text="Speichern" Grid.Row="2" BackgroundColor="CadetBlue" 
-                            CornerRadius="5" FontAttributes="Bold" Clicked="SaveLogBtnClicked"/>
-                </Grid>
-            </Frame>
-            <Frame BorderColor="DarkGray" Margin="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Label Text="Buchungen exportieren..." TextColor="Black" FontSize="Medium"
+
+                <Frame BorderColor="DarkGray" Margin="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Buchungen exportieren..." TextColor="Black" FontSize="Medium"
                            TextDecorations="Underline" HorizontalOptions="Center"/>
-                    <Editor Placeholder="Datei Name" Grid.Row="1"/>
-                    <Grid Grid.Row="2">
+                        <Editor Placeholder="Datei Name" Grid.Row="1" Text="{Binding BookingsFileName, Mode=TwoWay}"/>
+                        <StackLayout Grid.Row="2">
+                            <Label Text="Von:"/>
+                            <DatePicker Date="{Binding FromDate, Mode=TwoWay}"/>
+                            <Label Text="Bis:"/>
+                            <DatePicker Date="{Binding TargetNullValue, Mode=TwoWay}"/>
+                        </StackLayout>
+                        <Grid Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox IsChecked="{Binding isCSV, Mode=TwoWay}"/>
+                            <Label Text="als CSV Datei" Grid.Column="1" TextColor="Black"
+                               VerticalTextAlignment="Center"/>
+
+                            <CheckBox Grid.Row="1" Color="Green" IsChecked="{Binding isEXCEL, Mode=TwoWay}"/>
+                            <Label Text="als EXCEL Arbeitsmappe" Grid.Row="1" Grid.Column="1"
+                               VerticalTextAlignment="Center" TextColor="Black"/>
+
+                        </Grid>
+                        <Button Text="Exportieren" Grid.Row="4" BackgroundColor="CadetBlue"
+                            CornerRadius="5" TextColor="Black" FontAttributes="Bold" 
+                            Clicked="ExportBookingsBtnClicked"/>
+                    </Grid>
+                </Frame>
+
+                <Frame BorderColor="DarkGray" Margin="10">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
+                        <Label Text="Log exportieren..." HorizontalOptions="Center" TextDecorations="Underline"
+                           TextColor="Black" FontSize="Medium"/>
+                        <Editor Placeholder="Datei Name" Grid.Row="1" Text="{Binding LogFileName, Mode=TwoWay}"/>
 
-                        <CheckBox IsChecked="{Binding isCSV, Mode=TwoWay}"/>
-                        <Label Text="als CSV Datei" Grid.Column="1" TextColor="Black"
-                               VerticalTextAlignment="Center"/>
-
-                        <CheckBox Grid.Row="1" Color="Green" IsChecked="{Binding isEXCEL, Mode=TwoWay}"/>
-                        <Label Text="als EXCEL Arbeitsmappe" Grid.Row="1" Grid.Column="1"
-                               VerticalTextAlignment="Center" TextColor="Black"/>
-
+                        <Button Text="Speichern" Grid.Row="2" BackgroundColor="CadetBlue" 
+                            CornerRadius="5" FontAttributes="Bold" Clicked="SaveLogBtnClicked"/>
                     </Grid>
-                    <Button Text="Exportieren" Grid.Row="3" BackgroundColor="CadetBlue"
-                            CornerRadius="5" TextColor="Black" FontAttributes="Bold"/>
-                </Grid>
-            </Frame>
-        </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

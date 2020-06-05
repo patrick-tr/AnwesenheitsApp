@@ -11,7 +11,7 @@ namespace AnwesenheitsApp.Logging
         INFO, ERROR, WARNING, DEBUG, FATAL
     }
 
-    class Logging
+    public class Logging
     {
         private string _filePath = @"error_log.txt";
         private string _logText;
