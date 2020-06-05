@@ -23,12 +23,12 @@
                         </Grid.RowDefinitions>
                         <Label Text="Buchungen exportieren..." TextColor="Black" FontSize="Medium"
                            TextDecorations="Underline" HorizontalOptions="Center"/>
-                        <Editor Placeholder="Datei Name" Grid.Row="1" Text="{Binding BookingsFileName, Mode=TwoWay}"/>
+                        <Editor Placeholder="Datei Name" Grid.Row="1" Text="{Binding BookingFileName, Mode=TwoWay}"/>
                         <StackLayout Grid.Row="2">
                             <Label Text="Von:"/>
                             <DatePicker Date="{Binding FromDate, Mode=TwoWay}"/>
                             <Label Text="Bis:"/>
-                            <DatePicker Date="{Binding TargetNullValue, Mode=TwoWay}"/>
+                            <DatePicker Date="{Binding ToDate, Mode=TwoWay}"/>
                         </StackLayout>
                         <Grid Grid.Row="3">
                             <Grid.RowDefinitions>

@@ -1,4 +1,6 @@
-﻿using Syncfusion.XlsIO;
+﻿using Android.Views;
+using Java.Security;
+using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -17,7 +19,8 @@ namespace AnwesenheitsApp
     {
         private bool _isCSV;
         private bool _isEXCEL;
-        private string _folderPath;
+        private DateTime _fromDate;
+        private DateTime _toDate;
         private Logging.Logging _logger;
         private IExtStorage _extStorage;
 
@@ -46,6 +49,31 @@ namespace AnwesenheitsApp
             }
         }
         public string LogFileName { get; set; }
+        public string BookingFileName { get; set; }
+        public DateTime FromDate 
+        {
+            get
+            {
+                return this._fromDate;
+            }
+            set
+            {
+                this._fromDate = value;
+                OnPropertyChanged();
+            }    
+        }
+        public DateTime ToDate 
+        {
+            get
+            {
+                return this._toDate;
+            }
+            set
+            {
+                this._toDate = value;
+                OnPropertyChanged();
+            }    
+        }
 
         public ExportPage()
         {
@@ -54,9 +82,14 @@ namespace AnwesenheitsApp
             this.LogFileName = "";
             this._logger = new Logging.Logging();
 
-            this._folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
             this._extStorage = DependencyService.Get<IExtStorage>();
+
+            int month = DateTime.Now.Month;
+            int year = DateTime.Now.Year;
+            int daysInMonth = DateTime.DaysInMonth(year, month);
+
+            this.FromDate = new DateTime(year, month, 1);
+            this.ToDate = new DateTime(year, month, daysInMonth);
 
             InitializeComponent();
 
@@ -104,16 +137,28 @@ namespace AnwesenheitsApp
 
         private string CreateCsvData()
         {
+
+
+
+
+
             return "";
         }
 
         private async void CreateExcelFile()
         {
-            string fileName = "test.xlsx";
+            if (BookingFileName == null)
+            {
+                await DisplayAlert("Warnung!", "Der Dateiname darf nicht Leer sein!", "Ok");
+                return;
+            }
+
+            string fileName = BookingFileName;
+
             if(this._extStorage.CheckIfFileExists(fileName))
             {
                 bool answer = await DisplayAlert("Überschreiben?", "Es ist bereits eine " +
-                    "DAtei mit diesem Namen vorhanden! Soll diese überschrieben werden?",
+                    "Datei mit diesem Namen vorhanden! Soll diese überschrieben werden?",
                     "Ja", "Nein");
 
                 if (!answer)
