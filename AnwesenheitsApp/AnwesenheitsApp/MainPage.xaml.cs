@@ -101,12 +101,33 @@ namespace AnwesenheitsApp
             Button btn = (Button)sender;
 
             this._ServiceCtrlBtnState = !this._ServiceCtrlBtnState;
-            this.ServiceControllBtnText = this._ServiceCtrlBtnState == true ? "Stop" : "Start";
-            btn.BackgroundColor = this._ServiceCtrlBtnState == true ? Color.Red : Color.Green;
+            
+            if(this._ServiceCtrlBtnState)
+            {
+                this.ServiceControllBtnText = "Stop";
+                btn.BackgroundColor = Color.Red;
+                this._logger.WriteLogEntry(Logging.LoggingType.INFO, "Try to start Check position service...");
+                StartAlarm();
+            }
+            else
+            {
+                this.ServiceControllBtnText = "Start";
+                btn.BackgroundColor = Color.Green;
+                this._logger.WriteLogEntry(Logging.LoggingType.INFO, "Try to stop Check position service...");
+                StopAlarm();
+            }
+        }
 
-            this._logger.WriteLogEntry(Logging.LoggingType.INFO,
-                this._ServiceCtrlBtnState == true ? "Try to start Check position service..." :
-                "Try to stop Check position service...");
+        private void StartAlarm()
+        {
+            INotificationManager manager = DependencyService.Get<INotificationManager>();
+            manager.ScheduleNotification("Alarm Started!", "Der Button zum Starten des Alarms" +
+                " wurde gedrückt!");
+        }
+
+        private void StopAlarm()
+        {
+
         }
 
         public void LogButtonClicked(object sender, EventArgs e)
