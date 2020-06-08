@@ -54,7 +54,7 @@ namespace AnwesenheitsApp.Droid
                 .SetContentTitle(title)
                 .SetContentText(message)
                 .SetSmallIcon(Resource.Drawable.abc_btn_radio_material)
-                .SetDefaults((int)NotificationDefaults.Vibrate | (int)NotificationDefaults.Sound);
+                .SetDefaults((int)NotificationDefaults.Vibrate);
 
             manager.Notify(messageId, builder.Build());
 

@@ -120,9 +120,8 @@ namespace AnwesenheitsApp
 
         private void StartAlarm()
         {
-            INotificationManager manager = DependencyService.Get<INotificationManager>();
-            manager.ScheduleNotification("Alarm Started!", "Der Button zum Starten des Alarms" +
-                " wurde gedrückt!");
+            IAlarmHandler alarmHandler = DependencyService.Get<IAlarmHandler>();
+            alarmHandler.Start();
         }
 
         private void StopAlarm()
