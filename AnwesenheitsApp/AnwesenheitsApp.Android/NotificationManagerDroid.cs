@@ -61,8 +61,7 @@ namespace AnwesenheitsApp.Droid
             return messageId;
         }
 
-        public Notification ReturnNotification(string title, string message,
-            out int ID)
+        public Notification ReturnNotification(string title, string message)
             {
             if (!this.channelInitialized)
                 CreateNotificationChannel();
@@ -82,8 +81,6 @@ namespace AnwesenheitsApp.Droid
                 .SetSmallIcon(Resource.Drawable.abc_btn_radio_material)
                 .SetOngoing(true)
                 .SetContentIntent(pendingIntent);
-
-            ID = messageId;
 
             return notifBuilder.Build();
         }

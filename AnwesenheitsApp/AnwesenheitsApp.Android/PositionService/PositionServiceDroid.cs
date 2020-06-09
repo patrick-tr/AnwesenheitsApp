@@ -18,12 +18,12 @@ namespace AnwesenheitsApp.Droid
         public override StartCommandResult OnStartCommand(Intent intent,
             StartCommandFlags flags, int startId)
         {
-            int messageID;
+            int messageID = 90000;
 
             var notifMngr = new NotificationManagerDroid();
             Notification notification = notifMngr.ReturnNotification(
                 "Positions Service", "Die überwachung der Position für die" +
-                " automatische Prüfung der Anwesenheit läuft!", out messageID);
+                " automatische Prüfung der Anwesenheit läuft!");
 
             StartForeground(messageID, notification);
 
