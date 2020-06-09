@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Graphics;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,6 +7,22 @@ namespace AnwesenheitsApp
 {
     public partial class App : Application
     {
+        static Database database;
+
+        public static Database Database
+        {
+            get
+            {
+                if(database == null)
+                {
+                    database = new Database(System.IO.Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        "AnwesenheitsAppDb.db3"));
+                }
+                return database;
+            }
+        }
+
         public App()
         {
             InitializeComponent();

@@ -107,24 +107,24 @@ namespace AnwesenheitsApp
                 this.ServiceControllBtnText = "Stop";
                 btn.BackgroundColor = Color.Red;
                 this._logger.WriteLogEntry(Logging.LoggingType.INFO, "Try to start Check position service...");
-                StartAlarm();
+                StartForegroundService();
             }
             else
             {
                 this.ServiceControllBtnText = "Start";
                 btn.BackgroundColor = Color.Green;
                 this._logger.WriteLogEntry(Logging.LoggingType.INFO, "Try to stop Check position service...");
-                StopAlarm();
+                StopForegroundService();
             }
         }
 
-        private void StartAlarm()
+        private void StartForegroundService()
         {
-            IAlarmHandler alarmHandler = DependencyService.Get<IAlarmHandler>();
-            alarmHandler.Start();
+
+
         }
 
-        private void StopAlarm()
+        private void StopForegroundService()
         {
 
         }
