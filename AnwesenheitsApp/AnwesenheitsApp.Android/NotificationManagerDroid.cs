@@ -61,6 +61,33 @@ namespace AnwesenheitsApp.Droid
             return messageId;
         }
 
+        public Notification ReturnNotification(string title, string message,
+            out int ID)
+            {
+            if (!this.channelInitialized)
+                CreateNotificationChannel();
+
+            this.messageId++;
+
+            // Building intent
+            var intent = new Intent(Application.Context, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.SingleTop);
+            intent.PutExtra("title", "message");
+
+            var pendingIntent = PendingIntent.GetActivity(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
+
+            var notifBuilder = new NotificationCompat.Builder(Application.Context, channelId)
+                .SetContentTitle(title)
+                .SetContentText(message)
+                .SetSmallIcon(Resource.Drawable.abc_btn_radio_material)
+                .SetOngoing(true)
+                .SetContentIntent(pendingIntent);
+
+            ID = messageId;
+
+            return notifBuilder.Build();
+        }
+
         private void CreateNotificationChannel()
         {
             this.manager = (NotificationManager)Application.Context.GetSystemService(

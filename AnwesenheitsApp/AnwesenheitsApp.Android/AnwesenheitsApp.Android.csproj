@@ -72,7 +72,8 @@
     <Compile Include="ExtStorage.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="NotificationManagerDroid.cs" />
-    <Compile Include="PositionService.cs" />
+    <Compile Include="PositionService\PositionServiceDroid.cs" />
+    <Compile Include="PositionService\PositionServiceHelpers.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

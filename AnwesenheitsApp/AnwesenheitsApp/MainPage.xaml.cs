@@ -120,13 +120,14 @@ namespace AnwesenheitsApp
 
         private void StartForegroundService()
         {
-
-
+            IPositionService posService = DependencyService.Get<IPositionService>();
+            posService.StartPositionService();
         }
 
         private void StopForegroundService()
         {
-
+            IPositionService posService = DependencyService.Get<IPositionService>();
+            posService.StopPositionService();
         }
 
         public void LogButtonClicked(object sender, EventArgs e)
