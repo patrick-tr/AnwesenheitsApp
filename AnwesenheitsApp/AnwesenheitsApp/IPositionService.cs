@@ -8,5 +8,6 @@ namespace AnwesenheitsApp
     {
         void StartPositionService();
         void StopPositionService();
+        bool ServiceState { get; set; }
     }
 }

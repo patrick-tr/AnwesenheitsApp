@@ -20,6 +20,8 @@ namespace AnwesenheitsApp.Droid.PositionService
         private static Context _context = global::Android.App.Application.Context;
         private Logging.Logging _logger = new Logging.Logging();
 
+        public bool ServiceState { get; set; }
+
         public void StartPositionService()
         {
             var intent = new Intent(_context, typeof(PositionServiceDroid));
@@ -31,6 +33,7 @@ namespace AnwesenheitsApp.Droid.PositionService
                 else
                     _context.StartService(intent);
 
+                this.ServiceState = true;
                 this._logger.WriteLogEntry(Logging.LoggingType.INFO,
                     "Position service successful started!");
             }
@@ -49,8 +52,9 @@ namespace AnwesenheitsApp.Droid.PositionService
                 var intent = new Intent(_context, typeof(PositionServiceDroid));
                 _context.StopService(intent);
 
+                this.ServiceState = false;
                 this._logger.WriteLogEntry(Logging.LoggingType.INFO,
-                    "POsition service succesfull stoped!");
+                    "Position service succesfull stoped!");
             }
             catch(Exception ex)
             {

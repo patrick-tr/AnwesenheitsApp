@@ -17,12 +17,12 @@ namespace AnwesenheitsApp
             this._db.CreateTableAsync<LocationData>().Wait();
         }
 
-        public Task<List<LocationData>> GetLocationDataAsync()
+        public Task<List<LocationData>> GetLocationDataFromDbAsync()
         {
             return this._db.Table<LocationData>().ToListAsync();
         }
 
-        public Task<int> SaveLocationDataAsync(LocationData locationData)
+        public Task<int> SaveLocationDataToDbAsync(LocationData locationData)
         {
             return this._db.InsertAsync(locationData);
         }

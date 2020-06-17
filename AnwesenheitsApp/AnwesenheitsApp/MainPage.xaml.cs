@@ -79,7 +79,7 @@ namespace AnwesenheitsApp
             GetLastKownLocation();
             GetCurrentDate();
             this.ServiceControllBtnText = "Start";
-            this._ServiceCtrlBtnState = false;
+            this._ServiceCtrlBtnState = App.IsServiceRunning;
 
             InitializeComponent();
 
@@ -172,7 +172,7 @@ namespace AnwesenheitsApp
                     this.CurrentLocation = location.Latitude.ToString("#.0000") +
                         ", " + location.Longitude.ToString("#.0000");
 
-                    GetPlaceNameFromCoord(location.Longitude, location.Latitude);
+                    GetPlaceNameFromCoord(location.Latitude, location.Longitude);
                 }
             }
             catch (Exception ex)
@@ -193,7 +193,7 @@ namespace AnwesenheitsApp
                     this.CurrentLocation = location.Latitude.ToString("#.0000") +
                         ", " + location.Longitude.ToString("#.0000");
 
-                    GetPlaceNameFromCoord(location.Longitude, location.Latitude);
+                    GetPlaceNameFromCoord(location.Latitude, location.Longitude);
                 }
             }
             catch (Exception ex)
@@ -203,12 +203,11 @@ namespace AnwesenheitsApp
             }
         }
 
-        private async void GetPlaceNameFromCoord(double lon, double lat)
+        private async void GetPlaceNameFromCoord(double lat, double lon)
         {
             try
             {
                 var placemarks = await Geocoding.GetPlacemarksAsync(lat, lon);
-
                 var placemark = placemarks?.FirstOrDefault();
                 if (placemark != null)
                 {

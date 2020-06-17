@@ -9,12 +9,18 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AnwesenheitsApp.DbModels;
+using AnwesenheitsApp.Droid.Alarm;
+using Xamarin.Essentials;
 
 namespace AnwesenheitsApp.Droid
 {
     [Service]
     class PositionServiceDroid : Service
     {
+        private Logging.Logging _logger = new Logging.Logging();
+        private static AlarmHandler alarm = new AlarmHandler();
+
         public override StartCommandResult OnStartCommand(Intent intent,
             StartCommandFlags flags, int startId)
         {
@@ -27,18 +33,20 @@ namespace AnwesenheitsApp.Droid
 
             StartForeground(messageID, notification);
 
-            //Todo: Long Running Opperation
+            alarm.SetAlarm();
 
             return StartCommandResult.Sticky;
         }
 
         public override bool StopService(Intent name)
         {
+            alarm.UnsetAlarm();
             return base.StopService(name);
         }
 
         public override void OnDestroy()
         {
+            alarm.UnsetAlarm();
             base.OnDestroy();
         }
 
@@ -46,5 +54,7 @@ namespace AnwesenheitsApp.Droid
         {
             return null;
         }
+
+       
     }
 }

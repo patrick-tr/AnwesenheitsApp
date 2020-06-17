@@ -8,6 +8,7 @@ namespace AnwesenheitsApp
     public partial class App : Application
     {
         static Database database;
+        static bool isServiceRunning;
 
         public static Database Database
         {
@@ -22,6 +23,8 @@ namespace AnwesenheitsApp
                 return database;
             }
         }
+
+        public static bool IsServiceRunning { get; set; }
 
         public App()
         {
@@ -39,6 +42,8 @@ namespace AnwesenheitsApp
 
         protected override void OnResume()
         {
+            var service = DependencyService.Get<IPositionService>();
+            App.IsServiceRunning = service.ServiceState;
         }
     }
 }

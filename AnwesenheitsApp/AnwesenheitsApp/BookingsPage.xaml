@@ -7,9 +7,12 @@
              x:Class="AnwesenheitsApp.BookingsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView>
+                <ListView ItemsSource="{Binding Bookings}">
+                    
+                </ListView>
+            </ScrollView>
+                
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
