@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.Icu.Util;
-using Android.OS;
 using Android.Runtime;
 using Android.Text.Format;
-using Android.Views;
-using Android.Widget;
 
 namespace AnwesenheitsApp.Droid.Alarm
 {
@@ -24,14 +17,17 @@ namespace AnwesenheitsApp.Droid.Alarm
             var alarmManager = Application.Context.GetSystemService(Application.AlarmService)
                 .JavaCast<AlarmManager>();
 
+            //For Testing
             var now = DateTime.Now;
+            var triggerTime = new DateTime(now.Year, now.Month, now.Day, 18,
+                45, 0);
 
-            var dt = new DateTime(now.Year, now.Month, now.Day,
-                19, 5, 0, 0).Ticks / 10000;
+            var triggerOff = new DateTimeOffset(triggerTime);
 
-            long millis = dt - now.Ticks / 10000;
+            var diff = DateTimeOffset.Now.ToLocalTime().Millisecond -
+                triggerOff.ToLocalTime().Millisecond;
 
-            alarmManager.SetRepeating(AlarmType.RtcWakeup, millis,
+            alarmManager.SetRepeating(AlarmType.RtcWakeup, diff,
                 1000 * 60 * 60 * 4, pending);
         }
 

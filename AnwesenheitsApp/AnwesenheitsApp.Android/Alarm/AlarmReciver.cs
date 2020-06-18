@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AnwesenheitsApp.DbModels;
 using Xamarin.Essentials;
 
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace AnwesenheitsApp.Droid.Alarm
 {
@@ -21,11 +14,6 @@ namespace AnwesenheitsApp.Droid.Alarm
         private Logging.Logging _logger = new Logging.Logging();
 
         public override void OnReceive(Context context, Intent intent)
-        {
-            Test();
-        }
-
-        private void Test()
         {
             GetLocationData();
         }
